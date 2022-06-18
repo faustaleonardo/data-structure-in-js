@@ -1,3 +1,3 @@
 # Data Structures in JS
 
-If this helps you, a star won't hurt :D
+If this helps you, can you give your precious star? :D
