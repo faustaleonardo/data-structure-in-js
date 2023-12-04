@@ -1,4 +1,4 @@
-class MinHeap {
+class MaxHeap {
   constructor(array) {
     this.heap = this.buildHeap(array);
   }
@@ -23,7 +23,7 @@ class MinHeap {
     let idx = array.length - 1;
     let parentIdx = Math.floor((idx - 1) / 2);
     while (parentIdx >= 0) {
-      if (array[idx] < array[parentIdx]) {
+      if (array[idx][1] > array[parentIdx][1]) {
         this.swap(array, idx, parentIdx);
         idx = parentIdx;
         parentIdx = Math.floor((idx - 1) / 2);
@@ -45,11 +45,11 @@ class MinHeap {
       let rightChildIdx = idx * 2 + 2;
       if (
         rightChildIdx <= endIdx &&
-        array[rightChildIdx] < array[leftChildIdx]
+        array[rightChildIdx][1] > array[leftChildIdx][1]
       ) {
         idxToSwap = rightChildIdx;
       }
-      if (array[idxToSwap] < array[idx]) {
+      if (array[idxToSwap][1] > array[idx][1]) {
         this.swap(array, idxToSwap, idx);
         idx = idxToSwap;
         leftChildIdx = idx * 2 + 1;

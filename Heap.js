@@ -1,10 +1,14 @@
+// const maxHeap = new Heap((a, b) => {
+//   return a.passRatio > b.passRatio;
+// });
+
 class Heap {
   constructor(fn) {
     this.store = [];
     this.fn = fn;
   }
 
-  peak() {
+  peek() {
     return this.store[0];
   }
 
