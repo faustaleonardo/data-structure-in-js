@@ -19,8 +19,8 @@ class MaxHeap {
     return this.heap[0];
   }
 
-  siftUp(array) {
-    let idx = array.length - 1;
+  siftUp(array, startIdx) {
+    let idx = startIdx !== undefined ? startIdx : array.length - 1;
     let parentIdx = Math.floor((idx - 1) / 2);
     while (parentIdx >= 0) {
       if (array[idx] > array[parentIdx]) {
@@ -35,7 +35,7 @@ class MaxHeap {
 
   insert(num) {
     this.heap.push(num);
-    this.siftUp(this.heap);
+    this.siftUp(this.heap, this.heap.length - 1);
   }
 
   siftDown(array, idx, endIdx) {
@@ -66,6 +66,22 @@ class MaxHeap {
     this.siftDown(this.heap, 0, this.heap.length - 1);
 
     return valueToRemove;
+  }
+
+  delete(value) {
+    const index = this.heap.indexOf(value);
+    if (index === -1) return false;
+
+    const lastIdx = this.heap.length - 1;
+    this.swap(this.heap, index, lastIdx);
+    this.heap.pop();
+
+    if (index < this.heap.length) {
+      this.siftUp(this.heap, index);
+      this.siftDown(this.heap, index, this.heap.length - 1);
+    }
+
+    return true;
   }
 
   swap(array, i, j) {
